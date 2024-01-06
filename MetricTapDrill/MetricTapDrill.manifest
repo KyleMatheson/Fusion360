@@ -1,0 +1,10 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"script",
+	"author":	"KIM",
+	"description":	{
+		"":	"Imports Metric Tap Drill Sizes"
+	},
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}
