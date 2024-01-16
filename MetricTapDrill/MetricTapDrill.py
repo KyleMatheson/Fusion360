@@ -43,11 +43,17 @@ def run(context):
                         ' with ' + str(radial_engagement_alternates[index]) + ' radial engagement.')
 
             # Convert the float to a string, split it, apply zfill to the parts, and join them back together
+            # pExpressionStr = str(pExpression)
+            # parts = pExpressionStr.split('.')
+            # pExpressionFormatted = '.'.join(part.zfill(2) if part.isdigit() else part for part in parts)
+            # pExressionReal = adsk.core.ValueInput.createByString(pExpressionFormatted)
             pExpressionStr = str(pExpression)
             parts = pExpressionStr.split('.')
+            # Ensure the part following the decimal always has 2 digits
+            if len(parts) > 1 and parts[1].isdigit():
+                parts[1] = parts[1].ljust(2, '0')
             pExpressionFormatted = '.'.join(part.zfill(2) if part.isdigit() else part for part in parts)
-            pExressionReal = adsk.core.ValueInput.createByString(pExpressionFormatted)
-           
+            pExressionReal = adsk.core.ValueInput.createByString(pExpressionFormatted)           
             design.userParameters.add(pName, pExressionReal, pUnit, pComment)
 
         ui.messageBox('Metric Tap Drill Parameters Created')
